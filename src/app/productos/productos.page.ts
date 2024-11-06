@@ -3,6 +3,7 @@ import { ProductosService } from './../servicio/producto/productos.service';
 import { Producto } from './../interfaces/Producto';
 import { ViewWillEnter, ViewDidLeave } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-productos',
@@ -20,6 +21,7 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave  {
 
   constructor(
     private prdS: ProductosService,
+    private router:Router
   ) {
     this.cargarMasDatos();
   }
@@ -50,5 +52,10 @@ export class ProductosPage implements ViewWillEnter,ViewDidLeave  {
     this.prdS.listarProductos();
   }
 
-  
+  salir() {
+    // Aquí puedes definir lo que sucede cuando el usuario hace clic en 'salir'.
+    // Por ejemplo, redirigir a la página de inicio o cerrar la sesión
+    this.router.navigate(['/iniciar-sesion']);
+
+  }
 }
