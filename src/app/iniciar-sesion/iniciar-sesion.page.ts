@@ -44,7 +44,9 @@ export class IniciarSesionPage implements ViewWillEnter, ViewDidLeave {
 
 
   ionViewDidLeave(): void {
-    
+    if(this.subCargando){
+      
+    }
   }
 
 
