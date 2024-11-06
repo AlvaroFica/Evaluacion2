@@ -1,13 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>productos</ion-title>
+    <ion-title>Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">productos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-title>Cantidad</ion-title>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="cargarMasDatos($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más datos...">
+        <ion-row>
+          <ion-col>
+            <ion-list *ngIf="productos">
+              <ion-item *ngFor="let producto of productos">
+                <ion-avatar aria-hidden="true" slot="start">
+                  <img alt="" [src]="producto.thumbnail" />
+                </ion-avatar>
+                <ion-label>{{ producto.title }}</ion-label>
+                <ion-label> {{ producto.price }} </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    
+
+    <ion-row>
+      <ion-col>
+        <ion-list *ngIf="productos">
+          <ion-item *ngFor="let producto of productos">
+            <ion-avatar aria-hidden="true" slot="start">
+              <img alt="" [src]="producto.thumbnail" />
+            </ion-avatar>
+            <ion-label>{{ producto.title }}</ion-label>
+            <ion-label> {{ producto.price }} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
